@@ -1,5 +1,7 @@
-let multer = require('multer');
-let path = require('path');
+const multer = require('multer');
+const path = require('path');
+const swaggerUi = require('swagger-ui-express');
+const apiDocumentation = require('../../apiDocumentation.js');
 
 const getStudents = require('./controllers/getStudents.js');
 const getSpecialties = require('./controllers/getSpecialties.js');
@@ -18,6 +20,7 @@ let storage = multer.diskStorage({
 let upload = multer({storage: storage});
 
 module.exports = app => {
+    app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(apiDocumentation));
     app.get('/api/students', getStudents);
     app.get('/api/specialties', getSpecialties);
     app.post('/api/add', upload.single('userPhoto'), addStudent);

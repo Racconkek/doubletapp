@@ -57,3 +57,5 @@ npm run deploy
 
 ### Документация для API
 
+Документация сделана с помощью Swagger UI и доступна по [ссылке](https://doubletapp-students.herokuapp.com/api/docs)
+ в деплое приложения на Heroku.
