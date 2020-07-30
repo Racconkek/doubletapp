@@ -1,7 +1,7 @@
 const multer = require('multer');
 const path = require('path');
 const swaggerUi = require('swagger-ui-express');
-const apiDocumentation = require('../../apiDocumentation.js');
+const apiDocumentation = require('./apiDocumentation.js');
 
 const getStudents = require('./controllers/getStudents.js');
 const getSpecialties = require('./controllers/getSpecialties.js');
