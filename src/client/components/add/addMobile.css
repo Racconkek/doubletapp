@@ -1,0 +1,6 @@
+@media (max-device-width: 980px) {
+    .AddStudent {
+        padding: 0;
+        margin: 120px 20px 0 20px;
+    }
+}

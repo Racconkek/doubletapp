@@ -1,0 +1,72 @@
+.Filter {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0 20px 0;
+}
+
+.Search {
+    width: 90%;
+    margin-right: 10px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    height: 48px;
+    background-color: #ffffff;
+    box-shadow: 0 7px 64px rgba(0, 0, 0, 0.07);
+    border-radius: 6px;
+}
+
+.SearchPlace {
+    height: 48px;
+    width: 100%;
+    margin-left: 15px;
+    box-sizing: border-box;
+    border-color: transparent;
+    border-radius: 6px;
+    outline: none;
+    font-family: 'Geometria', sans-serif;
+}
+
+.SearchPlace::placeholder {
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.3);
+}
+
+.Magnifier {
+    width: 19px;
+    height: 19px;
+    margin-left: 20px;
+}
+
+.SortButton {
+    width: 180px;
+    height: 48px;
+    margin-left: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+    border-radius: 6px;
+    background-color: #ffffff;
+    outline: none;
+    border-color: transparent;
+    font-family: 'Geometria', sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    box-shadow: 0 7px 64px rgba(0, 0, 0, 0.07);
+}
+
+.Sort:hover {
+    box-shadow: 0 7px 64px rgba(0, 0, 0, 0.1);
+}
+
+.Sort:active {
+    box-shadow: 0 7px 64px rgba(0, 0, 0, 0.2);
+}
+
+.SortIcon {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+}

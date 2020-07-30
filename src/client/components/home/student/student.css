@@ -1,0 +1,90 @@
+.Student {
+    display: grid;
+    grid-template-columns: 5% 25% 25% 15% 10% 10% 5% 5%;
+    margin: 10px 18px 10px 18px;
+}
+
+.BorderPhoto {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+}
+
+.InnerPhoto {
+    width: 40px;
+    height: 40px;
+    margin-left: -2px;
+    margin-top: -2px;
+}
+
+.StudentPhotoContainer {
+    grid-column: 1 / 2;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    border-radius: 20px;
+    box-shadow: 0 7px 64px rgba(0, 0, 0, 0.07);
+}
+
+.StudentPhotoBorder {
+    opacity: 0.6;
+}
+
+.StudentPhotoInner {
+    width: 36px;
+    height: 36px;
+    overflow: hidden;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    border-radius: 18px;
+}
+
+.StudentItem {
+    display: flex;
+    align-items: center;
+    width: auto;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.StudentName {
+    grid-column: 2 / 3;
+}
+
+.StudentSpecialty {
+    grid-column: 3 / 4;
+}
+
+.StudentGroup {
+    grid-column: 4 / 5;
+}
+
+.StudentAge {
+    grid-column: 5 / 6;
+}
+
+.StudentRating {
+    grid-column: 6 / 7;
+}
+
+.StudentColor {
+    display: flex;
+    align-self: center;
+    grid-column: 7 / 8;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+}
+
+.StudentDelete {
+    display: flex;
+    align-self: center;
+    grid-column: 8 / 9;
+    width: 30px;
+    height: 30px;
+    background-color: #ffffff;
+    box-shadow: 0 0 16.3715px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    border-color: transparent;
+}

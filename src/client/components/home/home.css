@@ -1,0 +1,43 @@
+.Home {
+    padding: 0;
+    margin: 130px;
+    display: flex;
+    flex-direction: column;
+}
+
+.Info {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.PageName {
+    font-weight: bold;
+    font-size: 40px;
+}
+
+.AddStudentButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 340px;
+    height: 50px;
+    border-radius: 10px;
+    text-decoration: none;
+    background-color: #49c2e8;
+    color: #ffffff;
+}
+
+.AddStudentButton:hover {
+    box-shadow: 0 7px 64px rgba(0, 0, 0, 0.1);
+}
+
+.AddStudentButton:active {
+    box-shadow: 0 7px 64px rgba(0, 0, 0, 0.2);
+}
+
+.AddPlus {
+    width: 20px;
+    height: 20px;
+    margin-right: 15px;
+}

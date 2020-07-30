@@ -1,0 +1,21 @@
+{
+  "extends": ["xo", "plugin:react/recommended"],
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "no-unused-vars": 1,
+    "max-params": [2, 4],
+    "indent": ["error", 4],
+    "no-useless-constructor": "off"
+  },
+  "env": {
+    "browser": true
+  },
+  "parser": "babel-eslint",
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+body,
+html {
+    font-family: 'Geometria', sans-serif;
+    font-weight: normal;
+    font-size: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: 'Geometria';
+    src: url('../assets/fonts/Geometria.eot');
+    src:
+        local('Geometria'),
+        url('../assets/fonts/Geometria.eot?#iefix') format('embedded-opentype'),
+        url('../assets/fonts/Geometria.woff') format('woff'),
+        url('../assets/fonts/Geometria.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}

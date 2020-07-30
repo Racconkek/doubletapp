@@ -1,0 +1,50 @@
+.UserForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.FormInfo {
+    display: grid;
+    grid-auto-flow: column;
+    grid-column-gap: 100px;
+    grid-row-gap: 20px;
+    grid-template-columns: repeat(3, 380px);
+    grid-template-rows: repeat(5, 80px);
+    margin: 35px 0 35px 0;
+}
+
+.SubmitButton {
+    grid-area: submitButton;
+    height: 50px;
+    width: 380px;
+    color: #ffffff;
+    border-color: transparent;
+    outline: none;
+    background: #49c2e8;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.DropdownIndicator {
+    width: 10px;
+    height: 7px;
+    margin: 21px;
+}
+
+.SubmitButton:hover {
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
+}
+
+.SubmitButton:active {
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
+}
+
+.ColorImage {
+    display: flex;
+    align-self: center;
+    width: 30px;
+    height: 30px;
+    margin: 0;
+    padding: 0;
+}

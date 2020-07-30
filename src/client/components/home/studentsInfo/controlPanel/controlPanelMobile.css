@@ -1,0 +1,11 @@
+@media (max-device-width: 980px) {
+    .Filter {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .Search {
+        width: 100%;
+        margin: 0;
+    }
+}

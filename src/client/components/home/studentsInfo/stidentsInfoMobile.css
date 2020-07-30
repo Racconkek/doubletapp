@@ -1,0 +1,7 @@
+@media (max-device-width: 980px) {
+    .StudentsList {
+        margin: 0;
+        background-color: transparent;
+        box-shadow: none;
+    }
+}

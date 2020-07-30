@@ -1,0 +1,21 @@
+.StudentsInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.StudentsListLoading {
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    margin: 50px;
+}
+
+.StudentsList {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+    font-size: 16px;
+    background-color: #ffffff;
+    box-shadow: 0 7px 64px rgba(0, 0, 0, 0.07);
+    border-radius: 6px;
+}
