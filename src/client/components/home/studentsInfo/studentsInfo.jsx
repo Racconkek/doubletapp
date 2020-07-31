@@ -83,7 +83,7 @@ export class StudentsInfo extends React.Component {
         if (!isLoaded) {
             return <div className={'StudentsInfo'}>
                 <ControlPanel filterFunction={this.filterStudents} sortFunction={this.sortStudents}/>
-                <MediaQuery minDeviceWidth={481}>
+                <MediaQuery minDeviceWidth={981}>
                     <StudentListHeader/>
                 </MediaQuery>
                 <div className={'StudentsListLoading'}>Загрузка</div>

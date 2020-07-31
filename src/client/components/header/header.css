@@ -21,6 +21,17 @@
     text-decoration: none;
 }
 
+.LinkToGithub {
+    color: #49c2e8;
+    text-decoration: none;
+    display: flex;
+}
+
+.LinkBy {
+    margin: 0 5px;
+    color: #000000;
+}
+
 @media (max-device-width: 980px) {
     .Logo {
         margin-left: 30px;
