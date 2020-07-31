@@ -2,7 +2,8 @@
 
 Single Page Application для работы со списком студентов: добавлением, удалением, получением.
 В основе [Express.js](https://expressjs.com/),
- [React](https://reactjs.org/) и база данных [MongoDB](https://www.mongodb.com/), 
+ [React](https://reactjs.org/), база данных [MongoDB](https://www.mongodb.com/), 
+ аватарки динамически загружаются на [Cloudinary](https://cloudinary.com/), 
  а само приложение в облаке [Heroku](https://www.heroku.com/) - [Students](https://doubletapp-students.herokuapp.com/).
 
 ### Развёртывание
@@ -57,5 +58,5 @@ npm run deploy
 
 ### Документация для API
 
-Документация сделана с помощью Swagger UI и доступна по [ссылке](https://doubletapp-students.herokuapp.com/api/docs)
+Документация сделана с помощью Swagger и доступна по [ссылке](https://doubletapp-students.herokuapp.com/api/docs)
  в деплое приложения на Heroku.

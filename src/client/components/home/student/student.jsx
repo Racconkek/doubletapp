@@ -30,10 +30,12 @@ export class Student extends React.Component {
                 <div className={'StudentPersonalData'}>
                     <div className={'StudentPhotoContainer'}>
                         <div className={'StudentPhotoBorder'}>
-                            <img src={`/photo/${this.props.photo}`} className={ 'BorderPhoto' } alt={'photo'}/>
+                            <img src={this.props.photo}
+                                className={ 'BorderPhoto' } alt={'photo'}/>
                         </div>
                         <div className={'StudentPhotoInner'}>
-                            <img src={`/photo/${this.props.photo}`} className={ 'InnerPhoto' } alt={'photo'}/>
+                            <img src={this.props.photo}
+                                className={ 'InnerPhoto' } alt={'photo'}/>
                         </div>
                     </div>
                     <div className={ 'StudentItem StudentName' }>{ this.props.name }</div>
@@ -64,10 +66,12 @@ export class Student extends React.Component {
             <MediaQuery minDeviceWidth={981}>
                 <div className={'StudentPhotoContainer'}>
                     <div className={'StudentPhotoBorder'}>
-                        <img src={`/photo/${this.props.photo}`} className={ 'BorderPhoto' } alt={'photo'}/>
+                        <img src={this.props.photo}
+                            className={ 'BorderPhoto' } alt={'photo'}/>
                     </div>
                     <div className={'StudentPhotoInner'}>
-                        <img src={`/photo/${this.props.photo}`} className={ 'InnerPhoto' } alt={'photo'}/>
+                        <img src={this.props.photo}
+                            className={ 'InnerPhoto' } alt={'photo'}/>
                     </div>
                 </div>
                 <div className={ 'StudentItem StudentName' }>{ this.props.name }</div>
