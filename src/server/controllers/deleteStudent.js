@@ -15,7 +15,7 @@ module.exports = async function deleteStudents(req, res) {
     const students = req.app.locals.students;
     let studentPhotoId;
     try {
-        let result = await students.findOne({_id: new mongodb.ObjectID(studentId)});
+        const result = await students.findOne({_id: new mongodb.ObjectID(studentId)});
         studentPhotoId = result.photoId;
     } catch (err) {
         console.log(err);
@@ -23,24 +23,26 @@ module.exports = async function deleteStudents(req, res) {
     }
 
     if (studentPhotoId) {
-        students.deleteOne({_id: new mongodb.ObjectID(studentId)}, (err, _result) => {
-            if (err) {
+        try {
+            // eslint-disable-next-line no-unused-vars
+            const deleteStudentResult = await students.deleteOne({_id: new mongodb.ObjectID(studentId)});
+        } catch (err) {
+            console.log(err);
+            res.status(500).send({messageerror: 'Error on deleting student'});
+        }
+
+        if (studentPhotoId === 'students/defaultPhoto') {
+            res.sendStatus(200);
+        } else {
+            try {
+                // eslint-disable-next-line no-unused-vars
+                const deletePhotoResult = await cloudinary.uploader.destroy(studentPhotoId);
+            } catch (err) {
                 console.log(err);
-                res.status(500).send({messageerror: 'Error on deleting student'});
+                res.status(500).send({messageerror: 'Error on deleting student photo'});
             }
 
-            if (studentPhotoId === 'students/defaultPhoto') {
-                res.sendStatus(200);
-            } else {
-                cloudinary.uploader.destroy(studentPhotoId, (err, _result) => {
-                    if (err) {
-                        console.log(err);
-                        res.status(500).send({messageerror: 'Error on deleting student photo'});
-                    }
-
-                    res.sendStatus(200);
-                });
-            }
-        });
+            res.sendStatus(200);
+        }
     }
 };

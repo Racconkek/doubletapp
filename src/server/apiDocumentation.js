@@ -244,10 +244,6 @@ module.exports = {
                             color: {
                                 type: 'string',
                                 example: 'color1'
-                            },
-                            photo: {
-                                type: 'string',
-                                example: 'ivan-1596113502926.png'
                             }
                         }
                     }
