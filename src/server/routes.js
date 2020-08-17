@@ -20,11 +20,11 @@ let storage = multer.diskStorage({
 let upload = multer({storage: storage});
 
 module.exports = app => {
-    app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(apiDocumentation));
-    app.get('/api/students', getStudents);
-    app.get('/api/specialties', getSpecialties);
-    app.post('/api/add', upload.single('userPhoto'), addStudent);
-    app.delete('/api/delete/:id', deleteStudent);
+    app.use('/docs', swaggerUi.serve, swaggerUi.setup(apiDocumentation));
+    app.get('/students', getStudents);
+    app.get('/specialties', getSpecialties);
+    app.post('/students/add', upload.single('userPhoto'), addStudent);
+    app.delete('/students/delete/:id', deleteStudent);
     app.use('*', getHome);
 };
 

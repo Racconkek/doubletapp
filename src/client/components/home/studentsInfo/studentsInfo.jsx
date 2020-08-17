@@ -30,7 +30,7 @@ export class StudentsInfo extends React.Component {
         let url = window.location.protocol + '\/\/' +
             window.location.hostname + ':' +
             window.location.port +
-            '/api/students';
+            '/students';
         fetch(url)
             .then(res => res.json())
             .then(

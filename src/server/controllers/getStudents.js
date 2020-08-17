@@ -4,7 +4,7 @@ module.exports = function getStudents(req, res) {
     students.find({}).toArray((err, students) => {
         if (err) {
             console.log(err);
-            res.sendStatus(500);
+            res.status(500).send({messageerror: 'Error on find students collection'});
         }
 
         res.json({students: students});

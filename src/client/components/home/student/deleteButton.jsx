@@ -21,7 +21,7 @@ export class DeleteButton extends React.Component {
         let url = window.location.protocol + '\/\/' +
             window.location.hostname + ':' +
             window.location.port +
-            '/api/delete/' +
+            '/students/delete/' +
             this.props.id;
         console.log(url);
         fetch(url, {

@@ -42,7 +42,7 @@ export class SelectSpecialty extends React.Component {
         let url = window.location.protocol + '\/\/' +
             window.location.hostname + ':' +
             window.location.port +
-            '/api/specialties';
+            '/specialties';
         fetch(url)
             .then(res => res.json())
             .then(

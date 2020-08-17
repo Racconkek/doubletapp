@@ -22,7 +22,7 @@ module.exports = {
         }
     ],
     paths: {
-        '/api/students': {
+        '/students': {
             get: {
                 description: 'Get students',
                 operationId: 'getStudents',
@@ -43,7 +43,7 @@ module.exports = {
                 }
             }
         },
-        '/api/specialties': {
+        '/specialties': {
             get: {
                 description: 'Get specialties',
                 operationId: 'getSpecialties',
@@ -64,7 +64,7 @@ module.exports = {
                 }
             }
         },
-        '/api/add': {
+        '/students/add': {
             post: {
                 description: 'Add new student to students list',
                 operationId: 'addStudent',
@@ -87,7 +87,7 @@ module.exports = {
                 }
             }
         },
-        '/api/delete/{id}': {
+        '/students/delete/{id}': {
             delete: {
                 description: 'Delete student from students list',
                 operationId: 'deleteStudent',

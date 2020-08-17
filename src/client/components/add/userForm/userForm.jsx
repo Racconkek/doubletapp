@@ -54,13 +54,13 @@ class UserForm extends React.Component {
     }
 
     validateRating(rating) {
-        const valid = rating >= 0 && rating <= 100;
+        const valid = parseInt(rating, 10) >= 0 && parseInt(rating, 10) <= 100;
         this.inputRating.current.setValidation(valid);
         return valid;
     }
 
     validateAge(age) {
-        const valid = age >= 1 && age <= 1000;
+        const valid = parseInt(age, 10) >= 1 && parseInt(age, 10) <= 1000;
         this.inputAge.current.setValidation(valid);
         return valid;
     }
@@ -162,9 +162,9 @@ class UserForm extends React.Component {
         let url = window.location.protocol + '\/\/' +
             window.location.hostname + ':' +
             window.location.port +
-            '/api/add';
+            '/students/add';
         fetch(url, {
-            method: 'POST',
+            method: 'post',
             body: data
         })
             .then(res => {
