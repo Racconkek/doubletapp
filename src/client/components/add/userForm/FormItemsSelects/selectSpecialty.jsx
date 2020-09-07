@@ -11,7 +11,7 @@ import {
     invalidMobileSelectStyle
 } from './stylesConsts.jsx';
 
-export class SelectSpecialty extends React.Component {
+export default class SelectSpecialty extends React.Component {
     static propTypes = {
         onChangeFunction: PropTypes.func.isRequired
     };

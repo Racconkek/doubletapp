@@ -2,12 +2,12 @@ import React from 'react';
 import {withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import {ChangePhoto} from './FormItemChangePhoto/changePhoto.jsx';
-import {SelectSpecialty} from './FormItemsSelects/selectSpecialty.jsx';
-import {SelectGroup} from './FormItemsSelects/selectGroup.jsx';
-import {SelectColor} from './FormItemsSelects/selectColor.jsx';
-import {SelectSex} from './FormItemsSelects/selectSex.jsx';
-import {StandardInput} from './FormItemsInput/standardInput.jsx';
+import ChangePhoto from './FormItemChangePhoto/changePhoto.jsx';
+import SelectSpecialty from './FormItemsSelects/selectSpecialty.jsx';
+import SelectGroup from './FormItemsSelects/selectGroup.jsx';
+import SelectColor from './FormItemsSelects/selectColor.jsx';
+import SelectSex from './FormItemsSelects/selectSex.jsx';
+import StandardInput from './FormItemsInput/standardInput.jsx';
 
 import './userForm.css';
 import './userFormMobile.css';

@@ -5,7 +5,7 @@ import './deleteButton.css';
 import './deleteButtonMobile.css';
 import PropTypes from 'prop-types';
 
-export class DeleteButton extends React.Component {
+export default class DeleteButton extends React.Component {
     static propTypes = {
         deleteFunction: PropTypes.func.isRequired,
         id: PropTypes.string.isRequired

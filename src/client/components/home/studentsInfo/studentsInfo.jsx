@@ -3,21 +3,23 @@ import MediaQuery from 'react-responsive';
 
 import './studentsInfo.css';
 import './stidentsInfoMobile.css';
-import {ControlPanel} from './controlPanel/controlPanel.jsx';
-import {StudentListHeader} from './studentListHeader.jsx';
-import {Student} from '../student/student.jsx';
+import ControlPanel from './controlPanel/controlPanel.jsx';
+import StudentListHeader from './studentListHeader.jsx';
+import Student from '../student/student.jsx';
 
 export class StudentsInfo extends React.Component {
     constructor(props) {
         super(props);
         this.deleteStudentFromList = this.deleteStudentFromList.bind(this);
         this.loadStudents = this.loadStudents.bind(this);
-        this.filterStudents = this.filterStudents.bind(this);
-        this.sortStudents = this.sortStudents.bind(this);
+        this.onChangeFilterValue = this.onChangeFilterValue.bind(this);
+        this.onChangeSortValue = this.onChangeSortValue.bind(this);
         this.state = {
             isLoaded: false,
             students: [],
-            studentsToShow: []
+            studentsToShow: [],
+            filterValue: '',
+            sortValue: 0
         };
     }
 
@@ -59,30 +61,23 @@ export class StudentsInfo extends React.Component {
         }));
     }
 
-    filterStudents(value) {
-        let filteredStudents = this.state.students.filter(item =>
-            item.name.toLowerCase().search(value.toLowerCase()) !== -1
-        );
-        this.setState({studentsToShow: filteredStudents});
+    onChangeFilterValue(value) {
+        this.setState({filterValue: value});
     }
 
     sortByField(field) {
         return (a, b) => a[field] > b[field] ? 1 : -1;
     }
 
-    sortStudents(value) {
-        this.setState(prevState => {
-            let sortedStudents = prevState.studentsToShow.sort(this.sortByField(value));
-            return {studentsToShow: sortedStudents};
-        }
-        );
+    onChangeSortValue(value) {
+        this.setState({sortValue: value});
     }
 
     render() {
-        const {isLoaded, studentsToShow} = this.state;
+        const {isLoaded, students, filterValue, sortValue} = this.state;
         if (!isLoaded) {
             return <div className={'StudentsInfo'}>
-                <ControlPanel filterFunction={this.filterStudents} sortFunction={this.sortStudents}/>
+                <ControlPanel filterFunction={this.onChangeFilterValue} sortFunction={this.onChangeSortValue}/>
                 <MediaQuery minDeviceWidth={981}>
                     <StudentListHeader/>
                 </MediaQuery>
@@ -91,24 +86,27 @@ export class StudentsInfo extends React.Component {
         }
 
         return <div className={'StudentsInfo'}>
-            <ControlPanel filterFunction={this.filterStudents} sortFunction={this.sortStudents}/>
+            <ControlPanel filterFunction={this.onChangeFilterValue} sortFunction={this.onChangeSortValue}/>
             <MediaQuery minDeviceWidth={981}>
                 <StudentListHeader/>
             </MediaQuery>
             <div className={'StudentsList'}>
                 {
-                    studentsToShow.map(item => <Student
-                        key={item._id}
-                        id={item._id}
-                        photo={item.photo}
-                        name={item.name}
-                        specialty={item.specialty}
-                        group={item.group}
-                        age={item.age}
-                        rating={item.rating}
-                        color={item.color}
-                        deleteFunction={this.deleteStudentFromList}
-                    />)
+                    students
+                        .filter(item => item.name.toLowerCase().search(filterValue.toLowerCase()) !== -1)
+                        .sort(this.sortByField(sortValue))
+                        .map(item => <Student
+                            key={item._id}
+                            id={item._id}
+                            photo={item.photo}
+                            name={item.name}
+                            specialty={item.specialty}
+                            group={item.group}
+                            age={item.age}
+                            rating={item.rating}
+                            color={item.color}
+                            deleteFunction={this.deleteStudentFromList}
+                        />)
                 }
             </div>
         </div>;

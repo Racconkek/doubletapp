@@ -4,16 +4,16 @@ import PropTypes from 'prop-types';
 
 import './student.css';
 import './studentMobile.css';
-import {DeleteButton} from './deleteButton.jsx';
+import DeleteButton from './deleteButton.jsx';
 import ratingicon from '../../../../assets/staricon.svg';
 
-export class Student extends React.Component {
+export default class Student extends React.Component {
     static propTypes = {
         photo: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
         color: PropTypes.string.isRequired,
-        rating: PropTypes.string.isRequired,
-        age: PropTypes.string.isRequired,
+        rating: PropTypes.number.isRequired,
+        age: PropTypes.number.isRequired,
         specialty: PropTypes.string.isRequired,
         id: PropTypes.string.isRequired,
         group: PropTypes.string.isRequired,

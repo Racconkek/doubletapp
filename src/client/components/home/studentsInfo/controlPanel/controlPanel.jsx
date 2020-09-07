@@ -7,7 +7,7 @@ import './controlPanelMobile.css';
 import magnifiericon from '../../../../../assets/magnifiericon.svg';
 import sorticon from '../../../../../assets/sorticon.svg';
 
-export class ControlPanel extends React.Component {
+export default class ControlPanel extends React.Component {
     static propTypes = {
         filterFunction: PropTypes.func.isRequired,
         sortFunction: PropTypes.func.isRequired
@@ -16,10 +16,11 @@ export class ControlPanel extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            buttonNames: ['Имя', 'Рейтинг', 'Возраст', 'Цвет'],
-            buttonValues: ['name', 'rating', 'age', 'color'],
             current: 0
         };
+
+        this.buttonValues = ['name', 'rating', 'age', 'color'];
+        this.buttonNames = ['Имя', 'Рейтинг', 'Возраст', 'Цвет'];
         this.filterStudents = this.filterStudents.bind(this);
         this.sortStudents = this.sortStudents.bind(this);
     }
@@ -31,7 +32,7 @@ export class ControlPanel extends React.Component {
     sortStudents() {
         this.setState(prevState => {
             let current = (prevState.current + 1) % 4;
-            this.props.sortFunction(this.state.buttonValues[current]);
+            this.props.sortFunction(this.buttonValues[current]);
             return {current: current};
         });
     }
@@ -44,7 +45,7 @@ export class ControlPanel extends React.Component {
             </div>
             <MediaQuery minDeviceWidth={981}>
                 <button className={'SortButton'} onClick={this.sortStudents}>
-                    {this.state.buttonNames[this.state.current]}
+                    {this.buttonNames[this.state.current]}
                     <img src={sorticon} alt={'sorticon'} className={'SortIcon'}/>
                 </button>
             </MediaQuery>

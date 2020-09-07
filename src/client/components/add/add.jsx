@@ -7,21 +7,15 @@ import './add.css';
 import './addMobile.css';
 import backicon from '../../../assets/backicon.svg';
 
-export class Add extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return <div className={'AddStudent'}>
-            <Link to={'/'} className={'BackToHome'}>
-                <img src={backicon} alt={'back'} className={'BackIcon'}/>
-                НАЗАД К СПИСКУ СТУДЕНТОВ
-            </Link>
-            <div className={'Info'}>
-                <div className={'PageName'}>Новый студент</div>
-            </div>
-            <UserForm/>
-        </div>;
-    }
+export default function Add() {
+    return <div className={'AddStudent'}>
+        <Link to={'/'} className={'BackToHome'}>
+            <img src={backicon} alt={'back'} className={'BackIcon'}/>
+            НАЗАД К СПИСКУ СТУДЕНТОВ
+        </Link>
+        <div className={'Info'}>
+            <div className={'PageName'}>Новый студент</div>
+        </div>
+        <UserForm/>
+    </div>;
 }

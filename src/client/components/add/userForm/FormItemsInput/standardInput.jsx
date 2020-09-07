@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './standardInput.css';
 
-export class StandardInput extends React.Component {
+export default class StandardInput extends React.Component {
     static propTypes = {
         onChangeFunction: PropTypes.func.isRequired,
         label: PropTypes.string.isRequired,

@@ -5,7 +5,7 @@ import './changePhoto.css';
 import './changePhotoMobile.css';
 import defaultPhoto from '../../../../../assets/defaultPhoto.svg';
 
-export class ChangePhoto extends React.Component {
+export default class ChangePhoto extends React.Component {
     static propTypes = {
         onChangeFunction: PropTypes.func.isRequired
     };

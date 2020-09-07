@@ -18,7 +18,7 @@ import color6 from '../../../../../assets/colors/color6.svg';
 import color7 from '../../../../../assets/colors/color7.svg';
 import MediaQuery from 'react-responsive';
 
-export class SelectColor extends React.Component {
+export default class SelectColor extends React.Component {
     static propTypes = {
         onChangeFunction: PropTypes.func.isRequired
     };

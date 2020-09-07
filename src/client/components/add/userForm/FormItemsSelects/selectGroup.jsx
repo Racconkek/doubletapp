@@ -11,7 +11,7 @@ import {
 } from './stylesConsts.jsx';
 import MediaQuery from 'react-responsive';
 
-export class SelectGroup extends React.Component {
+export default class SelectGroup extends React.Component {
     static propTypes = {
         onChangeFunction: PropTypes.func.isRequired
     };

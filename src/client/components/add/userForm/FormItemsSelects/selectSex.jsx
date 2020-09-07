@@ -11,7 +11,7 @@ import {
 } from './stylesConsts.jsx';
 import MediaQuery from 'react-responsive';
 
-export class SelectSex extends React.Component {
+export default class SelectSex extends React.Component {
     static propTypes = {
         onChangeFunction: PropTypes.func.isRequired
     };
