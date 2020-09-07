@@ -1,93 +1,94 @@
-module.exports = class Student {
-    constructor({name, email, age, specialty, group, rating, sex, color},
-        photoUrl = 'https://res.cloudinary.com/raccoonkek/image/upload/v1597652002/students/defaultPhoto_zi6hss.svg',
-        photoId = 'students/defaultPhoto') {
-        this.name = name;
-        this.email = email;
-        this.age = age;
-        this.specialty = specialty;
-        this.group = group;
-        this.rating = rating;
-        this.sex = sex;
-        this.color = color;
-        this._photoUrl = photoUrl;
-        this._photoId = photoId;
-    }
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const SpecialtyModel = require('./specialty.js');
 
-    get photoUrl() {
-        return this._photoUrl;
-    }
-
-    set photoUrl(photoUrl) {
-        if (typeof photoUrl === 'string') {
-            this._photoUrl = photoUrl;
+const studentSchema = new Schema({
+    photo: {
+        type: String,
+        default: 'https://res.cloudinary.com/raccoonkek/image/upload/v1597652002/students/defaultPhoto_zi6hss.svg'
+    },
+    photoId: {
+        type: String,
+        default: 'students/defaultPhoto'
+    },
+    name: {
+        type: String,
+        required: true,
+        validate: {
+            validator: function (value) {
+                return value.search(/([A-ZА-ЯЁ][a-zа-яё]+ ?){1,2}([A-ZА-ЯЁ][a-zа-яё]+)?/) === 0;
+            },
+            message: 'Invalid student name, should start with upper case'
         }
-    }
-
-    get photoId() {
-        return this._photoId;
-    }
-
-    set photoId(photoId) {
-        if (typeof photoId === 'string') {
-            this._photoId = photoId;
+    },
+    email: {
+        type: String,
+        required: true,
+        validate: {
+            validator: function (value) {
+                return value.search(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/) === 0;
+            },
+            message: 'Invalid student email'
         }
-    }
+    },
+    age: {
+        type: Number,
+        required: true,
+        min: [1, 'Too small age for human'],
+        max: [1000, 'Too big age for human']
+    },
+    specialty: {
+        type: String,
+        required: true,
+        validate: {
+            validator: async function (value) {
+                let specialtiesResult;
+                try {
+                    specialtiesResult = await SpecialtyModel.find({});
+                } catch (err) {
+                    return Promise.reject(new Error('Не удалось получить список специальностей для проверки'));
+                }
 
-    async isValid(specialties) {
-        const isNameValid = typeof this.name === 'string' &&
-            this.name.search(/([A-ZA-ЯЁ][a-zа-яё]+ ?){1,2}([A-ZA-ЯЁ][a-zа-яё]+)?/) !== -1;
-        const isEmailValid = typeof this.email === 'string' &&
-            this.email.search(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/) !== -1;
-        const isAgeValid = typeof this.age === 'string' &&
-            parseInt(this.age, 10) >= 1 && parseInt(this.age, 10) <= 1000;
-        const isRatingValid = typeof this.rating === 'string' &&
-            parseInt(this.rating, 10) >= 0 && parseInt(this.rating, 10) <= 100;
-        const isSexValid = typeof this.sex === 'string' &&
-            ['male', 'female', 'other'].includes(this.sex);
-        const isColorValid = typeof this.color === 'string' &&
-            ['color1', 'color2', 'color3', 'color4', 'color5', 'color6', 'color7'].includes(this.color);
-        let isSpecialtyValid = false;
-        let isGroupValid = false;
-        let specialtiesResult;
-
-        try {
-            specialtiesResult = await specialties.find({}).toArray();
-        } catch (err) {
-            console.log(err);
-            throw new Error('Не удалось получить список специальностей для проверки');
+                return Promise.resolve(specialtiesResult.map(item => item.name).includes(value));
+            },
+            message: 'Invalid specialty'
         }
+    },
+    group: {
+        type: String,
+        required: true,
+        validate: {
+            validator: async function (value) {
+                let specialtiesResult;
+                try {
+                    specialtiesResult = await SpecialtyModel.findOne({name: this.specialty});
+                } catch (err) {
+                    return Promise.reject(new Error('Не удалось получить список специальностей для проверки'));
+                }
 
-        isSpecialtyValid = typeof this.specialty === 'string' &&
-            specialtiesResult.map(item => item.name).includes(this.specialty);
-        if (isSpecialtyValid) {
-            const specialty = specialtiesResult.find(item => item.name === this.specialty);
-            isGroupValid = typeof this.group === 'string' &&
-                specialty.groups.includes(this.group);
+                return Promise.resolve(specialtiesResult && specialtiesResult.groups.includes(value));
+            },
+            message: 'Invalid group'
         }
-
-        return isNameValid &&
-            isEmailValid &&
-            isAgeValid &&
-            isRatingValid &&
-            isSexValid &&
-            isColorValid &&
-            isSpecialtyValid &&
-            isGroupValid;
+    },
+    rating: {
+        type: Number,
+        required: true,
+        min: [0, 'Invalid rating, should be more then 0'],
+        max: [100, 'Invalid rating, should be less then 100']
+    },
+    sex: {
+        type: String,
+        required: true,
+        enum: ['male', 'female', 'other']
+    },
+    color: {
+        type: String,
+        required: true,
+        enum: ['color1', 'color2', 'color3', 'color4', 'color5', 'color6', 'color7']
     }
+});
 
-    getObjectToDatabase() {
-        return {
-            name: this.name,
-            email: this.email,
-            age: this.age,
-            specialty: this.specialty,
-            group: this.group,
-            rating: this.rating,
-            sex: this.sex,
-            color: this.color,
-            photo: this.photoUrl,
-            photoId: this.photoId
-        };
-    }
-};
+const StudentModel = mongoose.model('Student', studentSchema);
+
+module.exports = StudentModel;

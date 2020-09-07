@@ -1,7 +1,8 @@
 /* eslint-disable camelcase */
-const mongodb = require('mongodb');
 const cloudinary = require('cloudinary').v2;
 const config = require('config');
+
+const StudentModel = require('../models/student.js');
 
 cloudinary.config({
     cloud_name: config.get('cloudName'),
@@ -10,39 +11,34 @@ cloudinary.config({
 });
 
 // eslint-disable-next-line func-names
-module.exports = async function deleteStudents(req, res) {
+module.exports = async function deleteStudent(req, res) {
     const studentId = req.params.id;
-    const students = req.app.locals.students;
-    let studentPhotoId;
+    let result;
     try {
-        const result = await students.findOne({_id: new mongodb.ObjectID(studentId)});
-        studentPhotoId = result.photoId;
+        result = await StudentModel.findByIdAndDelete({_id: studentId});
     } catch (err) {
         console.log(err);
-        res.status(500).send({messageerror: 'This student does not exist'});
+        res.status(500).send({messageerror: 'Error on deleting student or Invalid student Id'});
+        return;
     }
 
-    if (studentPhotoId) {
+    if (!result) {
+        res.status(500).send({messageerror: 'Student does not exist'});
+        return;
+    }
+
+    if (result.photoId === 'students/defaultPhoto') {
+        res.sendStatus(200);
+    } else {
         try {
             // eslint-disable-next-line no-unused-vars
-            const deleteStudentResult = await students.deleteOne({_id: new mongodb.ObjectID(studentId)});
+            const deletePhotoResult = await cloudinary.uploader.destroy(result.photoId);
         } catch (err) {
             console.log(err);
-            res.status(500).send({messageerror: 'Error on deleting student'});
+            res.status(500).send({messageerror: 'Error on deleting student photo'});
+            return;
         }
 
-        if (studentPhotoId === 'students/defaultPhoto') {
-            res.sendStatus(200);
-        } else {
-            try {
-                // eslint-disable-next-line no-unused-vars
-                const deletePhotoResult = await cloudinary.uploader.destroy(studentPhotoId);
-            } catch (err) {
-                console.log(err);
-                res.status(500).send({messageerror: 'Error on deleting student photo'});
-            }
-
-            res.sendStatus(200);
-        }
+        res.sendStatus(200);
     }
 };
